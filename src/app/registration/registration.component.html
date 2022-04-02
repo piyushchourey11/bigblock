@@ -1,0 +1,101 @@
+<!-- <app-appheader></app-appheader>
+<app-sidebar></app-sidebar> -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ title | titlecase }}</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">{{ title | titlecase }}</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">{{ title | titlecase }} Registration Form</h3>
+          </div>
+          <!-- /.card-header -->
+          <form>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">First Name</label>
+                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
+                 </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Last Name</label>
+                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
+                 </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email">
+                 </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+                 </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Address</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter Address here"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Mobile Number</label>
+                    <input type="text" class="form-control" id="mobile" placeholder="Enter Mobile Number">
+                 </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Aadhar card Number</label>
+                    <input type="text" class="form-control" id="uidai" placeholder="Enter 12 Digit Number">
+                 </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Upload documents</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+               <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+<!-- 
+<app-footer></app-footer> -->

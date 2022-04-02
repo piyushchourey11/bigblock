@@ -1,0 +1,165 @@
+<!-- <app-appheader></app-appheader>
+<app-sidebar></app-sidebar> -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ title | titlecase }}</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">{{ title | titlecase }}</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">{{ title | titlecase }} Registration Form</h3>
+          </div>
+          <!-- /.card-header -->
+          <form>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Township Name</label>
+                      <input type="text" class="form-control" id="name" placeholder="Enter Township Name">
+                   </div>
+                  </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">State</label>
+                    <select class="form-control select2" name="state" style="width: 100%;">
+                        <option selected="selected">Alabama</option>
+                        <option>Alaska</option>
+                        <option>California</option>
+                        <option>Delaware</option>
+                        <option>Tennessee</option>
+                        <option>Texas</option>
+                        <option>Washington</option>
+                      </select>
+                 </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">City</label>
+                      <select class="form-control select2" name="city" style="width: 100%;">
+                          <option selected="selected">Alabama</option>
+                          <option>Alaska</option>
+                          <option>California</option>
+                          <option>Delaware</option>
+                          <option>Tennessee</option>
+                          <option>Texas</option>
+                          <option>Washington</option>
+                        </select>
+                   </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Pincode</label>
+                      <input type="text" class="form-control" id="pincode" placeholder="Enter Pincode">
+                   </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Number of Plots</label>
+                      <input type="text" class="form-control" id="plots" placeholder="Enter Number of Plots">
+                   </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Total size of township</label>
+                      <input type="text" class="form-control" id="size" placeholder="Enter Size in number">
+                   </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Colonizer/Owner</label>
+                      <input type="text" class="form-control" id="owner_name" placeholder="Enter Owner Name">
+                   </div>
+                  </div>
+                
+                <div class="">
+                  <label for="exampleInputEmail1">Colonizer status</label>
+                  <div class="">
+                    <div class="form-check-inline">
+                      <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" id="customRadio1" name="registered_status" value="Yes">
+                        <label for="customRadio1" class="custom-control-label">Registered</label>
+                     </div>
+                    </div>
+                    <div class="form-check-inline">
+                      <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" id="customRadio2" name="registered_status" value="No">
+                        <label for="customRadio2" class="custom-control-label">Non Registered</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Upload documents</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Latitude</label>
+                    <input type="text" class="form-control" id="latitude" placeholder="Enter Latitude" value="{{latitude}}">
+                 </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Latitude</label>
+                    <input type="text" class="form-control" id="latitude" placeholder="Enter Latitude" value="{{longitude}}">
+                 </div>
+                </div>                
+              </div>
+              <div class="row">
+
+              <!-- <div class="form-group">
+                  <label>Enter address</label>
+                  <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+                </div> -->
+              
+                <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                  <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                    (dragEnd)="markerDragEnd($event)"></agm-marker>
+                </agm-map> -->
+                <div class="col-md-10">
+                  <div class="form-group">
+                  <label for="">Description</label>
+                  <textarea class="form-control ckeditor" name="description" id="description" rows="3" placeholder="Enter Description here"></textarea>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+               <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+<!-- <app-footer></app-footer> -->
