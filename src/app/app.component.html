@@ -1,3 +1,5 @@
+<notifier-container></notifier-container>
+
 <div class="wrapper">
     
     <!-- <app-login *ngIf="!this.isLogin"></app-login> -->
@@ -7,11 +9,13 @@
     <app-footer></app-footer> -->
     <!-- <div class="main">
       <div class="header"> -->
-        <app-appheader *ngIf="this.isLogin"></app-appheader>
+        <app-appheader *ngIf="path != 'login'"></app-appheader>
+        <!-- <app-appheader *ngIf="this.isLogin"></app-appheader> -->
       <!-- </div>
       <div class="middle">
        <div class="leftsidenv"> -->
-        <app-sidebar *ngIf="this.isLogin"></app-sidebar>
+        <!-- <app-sidebar *ngIf="this.isLogin"></app-sidebar> -->
+        <app-sidebar *ngIf="path != 'login'"></app-sidebar>
        <!-- </div>
        <div class="rightsidenav"> -->
        <div class="main">    
@@ -23,7 +27,8 @@
       <div class="footer">
       </div>         
     </div>    -->
-    <app-footer *ngIf="this.isLogin"></app-footer>
+    <app-footer *ngIf="path != 'login'"app-footer>
+    <!-- <app-footer *ngIf="this.isLogin"></app-footer> -->
 </div>
 <!-- ./wrapper -->
 

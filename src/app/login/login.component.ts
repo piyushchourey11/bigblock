@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { ApiService } from '../_services/api.service';
 import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AuthenticationService } from '../_services/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  form: any;
   loading = false;
   submitted = false;
 
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private api: ApiService
 ) { }
 
 ngOnInit() {
@@ -47,10 +49,10 @@ onSubmit() {
   console.log(this.f.email.value, this.f.password.value);
   let user = {id:1, email: this.f.email.value, password: this.f.password.value };
   localStorage.setItem('currentUser', JSON.stringify(user));
-  const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+  const returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'admin';
   console.log(returnUrl);
+  this.api.showNotification('success','login succesfully.')
   this.router.navigate([returnUrl]);
-
   // this.authenticationService.login(this.f.email.value, this.f.password.value)
   //     .pipe(first())
   //     .subscribe({
