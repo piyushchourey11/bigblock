@@ -47,9 +47,11 @@ onSubmit() {
 
   this.loading = true;
   console.log(this.f.email.value, this.f.password.value);
-  let user = {id:1, email: this.f.email.value, password: this.f.password.value };
+  let user = {id:1, email: this.f.email.value, password: this.f.password.value , role:'super_admin'};
   localStorage.setItem('currentUser', JSON.stringify(user));
-  const returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'admin';
+  const returnUrl = this.route.snapshot.queryParams['returnUrl'] 
+  || (user.role == "super_admin"?'admin':'township');
+  console.log(this.route.snapshot.queryParams['returnUrl']);
   console.log(returnUrl);
   this.api.showNotification('success','login succesfully.')
   this.router.navigate([returnUrl]);

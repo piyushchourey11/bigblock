@@ -5,6 +5,8 @@ import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { NotifierService } from 'angular-notifier';
 import { Router } from '@angular/router';
+import { NgxUiLoaderService } from "ngx-ui-loader"; // Import NgxUiLoaderService
+
 const currentTimestaps = new Date().getTime().toString();
 let token = localStorage.getItem('token');
 
@@ -23,7 +25,8 @@ export class ApiService {
 
   private readonly notifier: NotifierService;
 
-  constructor(private http: HttpClient,notifierService: NotifierService,private router: Router) { 
+  constructor(private http: HttpClient,notifierService: NotifierService,private router: Router,
+	private ngxService: NgxUiLoaderService) { 
 	this.notifier = notifierService;
 
   }
@@ -146,6 +149,7 @@ export class ApiService {
 				localStorage.clear()
 				this.router.navigate(['login'])
 			}
+			
 			console.log(error)
 			return of(result as T);
 		};
@@ -172,4 +176,22 @@ export class ApiService {
 		};
 		return headers
 	}
+
+
+		/**
+	 * Show a notification
+	 *
+	 * @param {string} type    Notification type
+	 */
+		 loader( type: string  ): void {
+			console.log('runn notifications', type)
+			if(type == 'start'){
+				this.ngxService.start(); // start foreground spinner of the master loader with 'default' taskId
+	
+			} else{
+				this.ngxService.stop(); // stop foreground spinner of the master loader with 'default' taskId
+	
+			}
+			// Stop the foreground loading after 5s
+		}
 }

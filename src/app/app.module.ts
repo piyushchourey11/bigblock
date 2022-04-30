@@ -20,6 +20,8 @@ import { PlotsComponent } from './plots/plots.component';
 import { PlotListComponent } from './plots/list/list.component';
 import { ReportsComponent } from './reports/reports.component';
 import { NotifierModule,NotifierOptions } from 'angular-notifier';
+import { NgxUiLoaderModule } from "ngx-ui-loader";
+
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -89,6 +91,7 @@ const customNotifierOptions: NotifierOptions = {
       libraries: ['places']
     }),
     NotifierModule.withConfig(customNotifierOptions),
+    NgxUiLoaderModule
 
   ],
   providers: [

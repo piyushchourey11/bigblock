@@ -32,10 +32,38 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-child-indent"
+         data-widget="treeview" role="menu" data-accordion="false" *ngIf="sidebar_menu.length">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
+            <!-- {{sidebar_menu | json}} -->
+            <ng-container *ngFor="let item of sidebar_menu" > 
+              <!-- {{item | json}} -->
+              <li class="nav-item menu-open" *ngIf="checkRole(item.role)" >
+                <a [routerLink]="item.url" routerLinkActive="active" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    {{item.name}}
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview"  *ngIf="item.child && (item.child.length > 0)">
+                  <ng-container *ngFor="let child of item.child" >
+                    <li class="nav-item" *ngIf="checkRole(item.role)">
+                      <a [routerLink]="child.url" routerLinkActive="active" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> {{child.name}}</p>
+                      </a>
+                    </li>
+
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+
+
+          
+          <!-- <li class="nav-item menu-open">
             <a [routerLink]="['/admin']" routerLinkActive="active" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -114,7 +142,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
 
 
 
