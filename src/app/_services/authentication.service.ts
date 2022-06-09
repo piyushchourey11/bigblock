@@ -17,6 +17,8 @@ export class AuthenticationService {
     }
 
     public get currentUserValue(): User {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+        this.currentUser = this.currentUserSubject.asObservable();
         return this.currentUserSubject.value;
     }
 
@@ -29,7 +31,7 @@ export class AuthenticationService {
         //         return user;
         //     }));
 
-        let user = {id:1, email: username, password: password };
+        let user:any = {id:1, email: username, password: password };
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
         return user;

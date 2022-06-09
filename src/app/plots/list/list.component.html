@@ -7,13 +7,35 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>{{ title }}</h1>
+            <h1 class="list_heading"> {{ title | titlecase}}</h1>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">{{ title }}</li>
-            </ol>
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-4">
+            <!-- <div class="row"> 
+
+            </div> -->
+            <div class="input-group">
+              <!-- <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile"
+                >
+                <label class="custom-file-label" for="customFile">Choose file</label>
+                <button type="button" class="btn btn-secondory">Upload</button>
+
+              </div> -->
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile04" 
+                   (change)="Onselectfile($event)"  name="file">
+                  <label class="custom-file-label" for="inputGroupFile04">{{ bulkUpload ? bulkUpload.name:'Choose file'}}</label>
+                </div>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" [disabled]="!bulkUpload" id="inputGroupFileAddon04" (click)="onsubmitBulkUpload()">Upload</button>
+                </div>
+              </div>
+     
+              <div class="text-danger file-error" *ngIf="showerror" role="alert">Please select file</div>
+            </div>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -24,64 +46,75 @@
 
         <!-- Default box -->
         <div class="card">
-          <div class="">
-            <table class="table table-striped projects">
+          <div class="card-body">
+            <table #dtElement datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"class="table table-striped projects">
                 <thead>
                     <tr>
                         <th style="width: 1%">
-                            #
+                            ID
                         </th>
                         <th style="width: 20%">
-                            Township Name
+                            Plot Number
                         </th>
                         <th style="width: 20%">
-                           State
+                           Township Name
                         </th>
                         <th>
-                            City
+                            Block Name
                         </th>
                         <th style="width: 8%" class="text-center">
                             Status
+                        </th>
+                        <th style="width: 8%" class="text-center">
+                            Size
                         </th>
                         <th style="width: 30%" class="text-center"> Action
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let township of list; index as i;">
+                    <tr *ngFor="let plot of plotlist; index as i;">
                         <td>
-                            #
+                          {{plot.id}}
                         </td>
                         <td>
                             <a>
-                               {{ township.name }}
+                               {{ plot.plot_number }}
                             </a>
                             <br/>
                             <small>
-                                Created 01.01.2019
+                              {{plot.createdAt | date}}
                             </small>
                         </td>
                         <td>
-                            <span>{{ township.state }}</span>
+                            <span> {{ plot.township &&  plot.township.township_name?  plot.township.township_name: 'N/A' }}</span>
                         </td>
                         <td class="project_progress">
-                            <span>{{ township.city }}</span>
+                            <span>{{ plot.block &&  plot.block.name?  plot.block.name: 'N/A' }}
+                             </span>
                         </td>
                         <td class="project-state">
-                            <span class="badge badge-success">Registered</span>
+                            <span class="badge badge-success">{{plot.plot_status}}</span>
+                        </td>
+                        <td class="">
+                            <span class="">{{plot.dimesion}}</span>
                         </td>
                         <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" href="#">
+                            <!-- <a class="btn btn-primary btn-sm" href="javascript:void" 
+                            (click)="viewPlotlist(plot.id)">
                                 <i class="fas fa-folder">
                                 </i>
                                 View
-                            </a>
-                            <a class="btn btn-info btn-sm" href="#">
+                            </a> -->
+                            <a class="btn btn-info btn-sm" href="javascript:void" 
+                            (click)="editPlotlist(plot.id)">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
+                            <a class="btn btn-danger btn-sm" href="javascript:void" 
+                            (click)="selectedPlot=plot "
+                            data-toggle="modal" data-target="#staticBackdrop">
                                 <i class="fas fa-trash">
                                 </i>
                                 Delete
@@ -100,3 +133,25 @@
   </div>
   <!-- /.content-wrapper -->
 
+
+  <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" *ngIf="selectedPlot">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Delete Plot</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-plot">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure to Delete the Plot {{selectedPlot.name}} ? This action can not be reverted.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-custom"
+           (click)="deletePlotlist(selectedPlot.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>

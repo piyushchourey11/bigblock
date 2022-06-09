@@ -7,13 +7,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>{{ title | titlecase }}</h1>
+            <h1 class="list_heading">{{ title | titlecase }}</h1>
           </div>
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+            <!-- <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">{{ title | titlecase }}</li>
-            </ol>
+            </ol> -->
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -21,70 +21,396 @@
 
     <!-- Main content -->
     <section class="content">
+      <!-- <div class="btn-toolbar mb-2" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-secondary" 
+          routerLink="townships" (click)="onselectreport('townships')">Township</button>
 
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Second group">
+
+          <button type="button" class="btn btn-secondary" routerLink="blocks" (click)="onselectreport('blocks')">Block</button>
+
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Third group">
+          <button type="button" class="btn btn-secondary" (click)="onselectreport('plots')">Plot</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="Third group">
+          <button type="button" class="btn btn-secondary" (click)="onselectreport('brokers')">Broker</button>
+
+        </div>
+      </div> -->
+  
         <!-- Default box -->
         <div class="card">
-          <div class="">
-            <table class="table table-striped projects">
-                <thead>
-                    <tr>
-                        <th style="width: 1%">
-                            #
-                        </th>
-                        <th style="width: 20%">
-                            Plot Number
-                        </th>
-                        <th style="width: 20%">
-                           Commission
-                        </th>
-                        <th>
-                            Agent Name
-                        </th>
-                        <th style="width: 8%" class="text-center">
-                            Status
-                        </th>
-                        <th style="width: 30%" class="text-center"> Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let township of list; index as i;">
-                        <td>
-                            #
-                        </td>
-                        <td>
+          <div class="card-body">
+            <div >
+                <table #dtElement datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                 class="table table-striped projects" >
+                  <ng-container *ngIf="key == 'townships'">
+                    <thead>
+                      <tr>
+                          <th style="width: 1%">
+                              #
+                          </th>
+                          <th >
+                            Township Name
+                          </th>
+                          <th  class="">
+                            Plot Amount
+                          </th>
+                          <th >
+                            Payment Received
+                          </th>
+                          <th>
+                            Commission Amount
+                          </th>
+                      
+                        
+                          <th  class=""> Amount To Be Received
+                          </th>
+                          <th  class=""> Saleble Area
+                          </th>
+                          <th  class=""> Area Sold
+                          </th>
+                          <th  class=""> Remaining Area
+                          </th>
+                          <th>
+                            Description
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of reportList; index as i;">
+                          <td>
+                              #
+                          </td>
+                          <td>
+                              <a>
+                                 {{ item.township_name && item.township_name? item.township_name :'N/A'}}
+                              </a>
+                              <!-- <br/> -->
+                             
+                          </td>
+                          <td class="">
+                            <span class=" ">{{ item.plotAmount }}</span>
+                          </td>
+                          <td>
+                              <span>{{ item.bookingAmount }}</span>
+                          </td>
+                          <td class="">
+                              <span>{{ item.commission_amount }}</span>
+                          </td>
+                        
+                            <td class="">
+                            <span class=" ">{{ item.remainingAmount }}</span>
+                              <!-- <a class="btn btn-primary btn-sm" href="javascript:void" 
+                              (click)="viewreportList(township.id)">
+                                  <i class="fas fa-folder">
+                                  </i>
+                                  View
+                              </a>
+                              <a class="btn btn-danger btn-sm" href="javascript:void" 
+                              (click)="selectedreport = township"
+                              data-toggle="modal" data-target="#staticBackdrop">
+                                  <i class="fas fa-trash">
+                                  </i>
+                                  Delete
+                              </a> -->
+                          </td>
+                        
+                          <td>
                             <a>
-                               {{ township.name }}
+                               {{  item.saleable_area? item.saleable_area :'N/A'}}
                             </a>
-                            <br/>
-                            <small>
-                                Created 01.01.2019
-                            </small>
+                            <!-- <br/> -->
+                           
+                        </td>
+                          <td>
+                            <a>
+                               {{  item.areaSold? item.areaSold :'N/A'}}
+                            </a>
+                            <!-- <br/> -->
+                           
+                        </td>
+                          <td>
+                            <a>
+ {{   item.saleable_area && item.areaSold?  item.saleable_area - item.areaSold  :'N/A'}}                           
+  </a>
+                            <!-- <br/> -->
+                           
                         </td>
                         <td>
-                            <span>{{ township.state }}</span>
-                        </td>
-                        <td class="project_progress">
-                            <span>{{ township.city }}</span>
-                        </td>
-                        <td class="project-state">
-                            <span class="badge badge-success">{{ township.status }}</span>
-                        </td>
-                        <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" href="#">
-                                <i class="fas fa-folder">
-                                </i>
-                                View
+                          <a>
+                             {{ item.description && item.description? item.description :'N/A'}}
+                          </a>
+                          <!-- <br/> -->
+                         
+                      </td>
+                      </tr>
+                  </tbody>
+                  </ng-container>
+                  <ng-container  *ngIf="key == 'blocks'">
+                    <thead>
+                      <tr>
+                          <th style="width: 1%">
+                              #
+                          </th>
+                          <th >
+                            Township Name
+                          </th>
+                          <th >
+                            Block Name
+                          </th>
+                          <th >
+                            Plot Amount
+                          </th>
+                          <th >
+                            Booking Amount
+                          </th>
+                          <th>
+                            Commission Amount
+                          </th>
+                         
+                          <th  class="">  Amount To Be Received
+                          </th>
+                          <th  class=""> Saleble Area
+                          </th>
+                          <th  class=""> Area Sold
+                          </th>
+                          <th  class=""> Remaining Area
+                          </th>
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of reportList; index as i;">
+                          <td>
+                              #
+                          </td>
+                          <td>
+                              <a>
+                                 {{ item.township_name && item.township_name? item.township_name :'N/A'}}
+                              </a>
+                             
+                          </td>
+                          <td>
+                              <a>
+                                 {{ item.block_name && item.block_name? item.block_name :'N/A'}}
+                              </a>
+                             
+                          </td>
+                          <td class="">
+                              <span class=" ">{{ item.plotAmount }}</span>
+                            </td>
+                          <td>
+                              <span>{{ item.bookingAmount }}</span>
+                          </td>
+                          <td class="">
+                              <span>{{ item.commission_amount }}</span>
+                          </td>
+                            <td class="">
+                              {{   item.remainingAmount ?item.remainingAmount:'N/A' }}
+                              <!-- <a class="btn btn-primary btn-sm" href="javascript:void" 
+                              (click)="viewreportList(township.id)">
+                                  <i class="fas fa-folder">
+                                  </i>
+                                  View
+                              </a>
+                              <a class="btn btn-danger btn-sm" href="javascript:void" 
+                              (click)="selectedreport = township"
+                              data-toggle="modal" data-target="#staticBackdrop">
+                                  <i class="fas fa-trash">
+                                  </i>
+                                  Delete
+                              </a> -->
+                          </td>
+                          <td>
+                            <a>
+                               {{  item.saleable_area? item.saleable_area :'N/A'}}
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
-                                <i class="fas fa-trash">
-                                </i>
-                                Delete
-                            </a>
+                            <!-- <br/> -->
+                           
                         </td>
-                    </tr>
-                </tbody>
-            </table>
+                          <td>
+                            <a>
+                               {{  item.areaSold? item.areaSold :'N/A'}}
+                            </a>
+                            <!-- <br/> -->
+                           
+                        </td>
+                          <td>
+                            <a>
+                               {{   item.saleable_area && item.areaSold?  item.saleable_area - item.areaSold  :'N/A'}}
+                            </a>
+                            <!-- <br/> -->
+                           
+                        </td>
+                      </tr>
+                  </tbody>
+                  </ng-container>
+                  <ng-container *ngIf="key == 'plots'">
+                    <thead>
+                      <tr>
+                          <th style="width: 1%">
+                              #
+                          </th>
+                          <th >
+                            Township Name
+                          </th>
+                          <th >
+                            Plot No
+                          </th>
+                          <th >
+                            Plot Amount
+                          </th>
+                          <th >
+                            Booking Amount
+                          </th>
+                          <th>
+                            Commission Amount
+                          </th>
+                      
+                          <th  class="">Amount To Be Received
+                          </th>
+                      
+                          <th  class="">Description
+                          </th>
+                          <th  class=""> Plot Size
+                          </th>
+                          <th  class=""> Broker Name
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of reportList; index as i;">
+                          <td>
+                              #
+                          </td>
+                          <td>
+                            <a>
+                               {{ item.township_name? item.township_name :'N/A'}}
+                            </a>
+                           
+                        </td>
+                          <td>
+                              <a>
+                                 {{ item.plot_number? item.plot_number :'N/A'}}
+                              </a>
+                             
+                          </td>
+                          <td class="">
+                            <span class=" ">{{ item.plot_amount }}</span>
+                          </td>
+                          <td>
+                              <span>{{ item.bookingAmount }}</span>
+                          </td>
+                          <td class="">
+                              <span>{{ item.commission_amount }}</span>
+                          </td>
+                         
+                            <td class="">
+                            <span class=" ">{{ item.remainingAmount }}</span>
+                           
+                          </td>
+                            <td class="">
+                            <span class=" ">{{ item.description }}</span>
+                           
+                          </td>
+                          <td>
+                            <a>
+                               {{  item.plot_size? item.plot_size :'N/A'}}
+                            </a>
+                            <!-- <br/> -->
+                           
+                        </td>
+                          <td>
+                            <a>
+                               {{  item.first_name? item.first_name +' '+item.last_name :'N/A'}}
+                            </a>
+                            <!-- <br/> -->
+                           
+                        </td>
+                      </tr>
+                  </tbody>
+                  </ng-container>
+                  <ng-container *ngIf="key == 'brokers'">
+                    <thead>
+                      <tr>
+                          <th style="width: 1%">
+                              #
+                          </th>
+                          <th >
+                            Broker Name
+                          </th>
+                          <th >
+                            Number of Plots
+                          </th>
+                          <th >
+                            Booking Amount
+                          </th>
+                          <th  class="">
+                            Plot Amount
+                          </th>
+                          <th>
+                            Commission Amount
+                          </th>
+                          <th  class=""> Amount To Be Received
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of reportList; index as i;">
+                          <td>
+                              #
+                          </td>
+                          <td>
+                              <a>
+                                 {{ item.broker && item.broker.first_name? item.broker.first_name :'N/A'}}
+                              </a>
+                             
+                          </td>
+                          <td>
+                              <a>
+                                 {{ item.number_of_plot ? item.number_of_plot :'N/A'}}
+                              </a>
+                             
+                          </td>
+                          <td>
+                              <span>{{ item.bookingAmount }}</span>
+                          </td>
+                          <td class="">
+                              <span class=" ">{{ item.plotAmount }}</span>
+                            </td>
+                          <td class="">
+                              <span>{{ item.commission_amount }}</span>
+                          </td>
+                            <td class="">
+                            <span class=" ">{{ item.remainingAmount }}</span>
+                              <!-- <a class="btn btn-primary btn-sm" href="javascript:void" 
+                              (click)="viewreportList(township.id)">
+                                  <i class="fas fa-folder">
+                                  </i>
+                                  View
+                              </a>
+                              <a class="btn btn-danger btn-sm" href="javascript:void" 
+                              (click)="selectedreport = township"
+                              data-toggle="modal" data-target="#staticBackdrop">
+                                  <i class="fas fa-trash">
+                                  </i>
+                                  Delete
+                              </a> -->
+                          </td>
+                      </tr>
+                  </tbody>
+                  </ng-container>
+                </table>
+
+              
+            </div>
+      
+          
+            
           </div>
           <!-- /.card-body -->
         </div>
@@ -96,3 +422,26 @@
   <!-- /.content-wrapper -->
 
 <!-- <app-footer></app-footer> -->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" *ngIf="selectedreport">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Delete Township</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure to Delete the report {{selectedreport.name}} ? This action can not be reverted.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-custom"
+           (click)="deletereportList(selectedreport.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
