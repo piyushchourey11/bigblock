@@ -136,4 +136,17 @@ export class ListComponent implements OnInit {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
+
+
+export(){
+  console.log("excel export");
+  this.api.postData('township/export', {}, "Post").subscribe((res:any) => {
+      if(res && res.status == 1) {
+          window.open(location.origin+'/'+res.data);
+      }else {
+      
+      }
+    })
+}
+
 }

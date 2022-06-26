@@ -4,7 +4,8 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { FormBuilder,  Validators } from '@angular/forms';
 import { ApiService } from '../_services/api.service';
 import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -27,6 +28,19 @@ export class DashboardComponent implements OnInit {
     { data: [0,2,4,1,3,11,15,17,4], label: 'Booking' },
     // { data: [2800, 4800, 4000, 7900, 9600, 8870, 1400], label: 'Company B' }
   ];
+
+  // Pie
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
+  public pieChartData: SingleDataSet = [300, 500, 100];
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
+
+
+
   constructor(@Inject(DOCUMENT) private document: Document,
   private route: ActivatedRoute,
   private router: Router, 
@@ -37,6 +51,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     //this.document.body.classList.add('test');
+    monkeyPatchChartJsTooltip();
+    monkeyPatchChartJsLegend();
   }
 
   getbardata() {

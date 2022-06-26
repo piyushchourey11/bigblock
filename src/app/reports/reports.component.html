@@ -366,7 +366,7 @@
                           </td>
                           <td>
                               <a>
-                                 {{ item.broker && item.broker.first_name? item.broker.first_name :'N/A'}}
+                                 {{ item.first_name ? item.first_name :'N/A'}}
                               </a>
                              
                           </td>
@@ -377,7 +377,7 @@
                              
                           </td>
                           <td>
-                              <span>{{ item.bookingAmount }}</span>
+                              <span><i class="fa fa-inr" aria-hidden="true"></i> {{ item.bookingAmount }}</span>
                           </td>
                           <td class="">
                               <span class=" ">{{ item.plotAmount }}</span>
