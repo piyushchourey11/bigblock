@@ -122,29 +122,39 @@ export class BookinglistComponent implements OnInit {
        //  }
      }
    
-     onsubmitBulkUpload(){
-       if(!this.bulkUpload) {
-         this.showerror = true
-       }
-       const formData: FormData = new FormData();
-       
-       console.log( this.bulkUpload)
-       formData.append('importFile', this.bulkUpload);
-       this.api.loader('start')
-       
-       this.api.postData('booking/import',formData,"POST").subscribe(res => {
-         if(res['status'] == 1) {
-           this.api.loader('stop')
-           this.getbookinglist();
-           this.api.showNotification('success', res['message']);
-           this.showerror = false;
-           this.bulkUpload = undefined;
-         }else {
-           this.api.showNotification('error', res['message']);
-           this.api.loader('stop')
-           this.showerror = false;
-         }
-       })
-     }
+  onsubmitBulkUpload(){
+    if(!this.bulkUpload) {
+      this.showerror = true
+    }
+    const formData: FormData = new FormData();
+    
+    console.log( this.bulkUpload)
+    formData.append('importFile', this.bulkUpload);
+    this.api.loader('start')
+    
+    this.api.postData('booking/import',formData,"POST").subscribe(res => {
+      if(res['status'] == 1) {
+        this.api.loader('stop')
+        this.getbookinglist();
+        this.api.showNotification('success', res['message']);
+        this.showerror = false;
+        this.bulkUpload = undefined;
+      }else {
+        this.api.showNotification('error', res['message']);
+        this.api.loader('stop')
+        this.showerror = false;
+      }
+    })
+  }
+
+  downloadDoc(booking:any){
+    console.log(booking)
+    let docArr = ['agreementDoc','aadharcardDoc','salarySlipDoc'];
+    docArr.forEach(function (value) {
+      if(!booking[value].includes('null')){
+        window.open(booking[value], '_blank');
+      }
+    })
+  }
    
 }

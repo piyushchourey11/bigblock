@@ -33,11 +33,13 @@ export class DashboardComponent implements OnInit {
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
-  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  public pieChartData: SingleDataSet = [300, 500, 100];
+  public pieChartLabels: Label[] = ['Booked', 'New', 'Resale', 'Sold'];
+  public pieChartData: SingleDataSet = [300, 500, 100,200];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
+  piechart: any;
+  townshiplist: any;
 
 
 
@@ -47,6 +49,8 @@ export class DashboardComponent implements OnInit {
   private api : ApiService, private fb: FormBuilder) {
     this.getbardata()
     this.getGraph()
+    this.getPieChartData("");
+    this.getTownshipList();
   }
 
   ngOnInit(): void {
@@ -55,6 +59,21 @@ export class DashboardComponent implements OnInit {
     monkeyPatchChartJsLegend();
   }
 
+  getTownshipList() {
+    this.api.fetchData('township/getAll', {}, "Get").subscribe((res:any) => {
+      if(res && res.status == 1) {
+          this.townshiplist = res['data'];
+        }else {
+        this.townshiplist =[];
+      }
+    })
+  }
+
+  onchangeTownship(event:any){
+    this.piechart = undefined;
+    this.getPieChartData(event.target.value);
+  }
+  
   getbardata() {
     this.api.fetchData('report/getDashboardWidgetData', {}, "GET").subscribe((res:any) => {
       if(res['status'] == 1) {
@@ -65,6 +84,7 @@ export class DashboardComponent implements OnInit {
       }
     })
   }
+
   getGraph() {
     this.api.fetchData('report/getDashboardReportChart', {}, "GET").subscribe((res:any) => {
       if(res['status'] == 1) {
@@ -77,6 +97,22 @@ export class DashboardComponent implements OnInit {
 
       }else {
         this.graph = []
+      }
+    })
+  }
+
+  getPieChartData(township_id:any){
+    let paramObj:any = {};
+    if(township_id){
+      paramObj['townshipId'] = township_id;
+    }
+    this.api.fetchData('report/getPieChartData', paramObj, "GET").subscribe((res:any) => {
+      if(res['status'] == 1) {
+        this.piechart = res['data'];
+        this.pieChartData = this.piechart[0].data
+        this.pieChartLabels = this.piechart[0].lable
+      }else {
+        this.piechart = []
       }
     })
   }

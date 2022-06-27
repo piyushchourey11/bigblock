@@ -135,12 +135,17 @@
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">
+                  <h3 class="card-title float-left">
                     <i class="fas fa-chart-pie mr-1"></i>
                     Pie chart 
                   </h3>
+                  <select class="float-right" (change)="onchangeTownship($event)">
+                    <option value="">Select township</option>
+                    <option value="{{ township.id }}" *ngFor = "let township of townshiplist"> {{ township.township_name }}</option>
+                  </select>
                 </div>
-                <div class="card-body">
+                <!-- {{piechart.length}} -->
+                <div class="card-body" *ngIf="piechart && piechart.length">
                   <div style="display: block;">
                     <canvas baseChart 
                       [data]="pieChartData" 

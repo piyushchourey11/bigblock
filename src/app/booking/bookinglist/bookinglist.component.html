@@ -99,29 +99,20 @@
                         </td>
                      
                          <td class="project-actions text-center">
-                            <!-- <a class="btn btn-primary btn-sm" href="javascript:void(0)"
-                             >
-                                <i class="fas fa-folder">
-                                </i>
-                                View
-                            </a>  -->
-                            <a class="btn btn-info btn-sm mr-2"  href="javascript:void(0)" 
-                            (click)="editbookinglist(booking.id)">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Edit
+                            <a class="btn btn-primary btn-sm mr-2" href="javascript:void(0)" (click)="downloadDoc(booking)"title="Download documents">
+                              <i class="fas fa-eye"></i>
                             </a> 
                             <a class="btn btn-info btn-sm mr-2"  href="javascript:void(0)" 
-                            (click)="sendmail(booking.id)">
-                                <!-- <i class="fas fa-pencil-alt">
-                                </i> -->
-                                Send Mail
+                            (click)="editbookinglist(booking.id)" title="Edit">
+                                <i class="fas fa-pencil-alt"></i>
                             </a> 
-                            <a class="btn btn-danger btn-sm" (click)="selectedbooking = booking" href="javascript:void(0)" 
+                            <a class="btn btn-info btn-sm mr-2"  href="javascript:void(0)" 
+                            (click)="sendmail(booking.id)" title="Send Mail">
+                                <i class="fas fa-envelope"></i>
+                            </a> 
+                            <a class="btn btn-danger btn-sm" title="Delete" (click)="selectedbooking = booking" href="javascript:void(0)" 
                             data-toggle="modal" data-target="#staticBackdrop">
-                                <i class="fas fa-trash">
-                                </i>
-                                Delete
+                                <i class="fas fa-trash"></i>
                             </a>
                         </td> 
                     </tr>
