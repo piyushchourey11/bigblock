@@ -150,7 +150,7 @@
                    </div>
                   </div>
                   <div class="col-md-3">
-                      <label for="exampleInputEmail1">Plot Amount</label>
+                      <label for="exampleInputEmail1">Total Plot Amount</label>
                       <div class="input-group mb-3">
                         <input type="text" class="form-control" id="plotAmount" name="plotAmount"
                         formControlName="plotAmount"
@@ -160,20 +160,70 @@
                           <div *ngIf="submited && f.plotAmount.errors.required">Plot Amount is required</div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-md-3">
-                      <label for="exampleInputEmail1"> Amount Received</label>
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="bookingAmount" name="bookingAmount"
-                         formControlName="bookingAmount"
-                        [ngClass]="{ 'is-invalid': submited && f.bookingAmount.errors }">
-                        
-                        <div *ngIf="submited && f.bookingAmount.errors " class="invalid-feedback">
-                          <div *ngIf="submited && f.bookingAmount.errors.required">Booking  Amount is required</div>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Cash Plot Amount</label>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" id="cashPlotAmount" name="cashPlotAmount"
+                      formControlName="cashPlotAmount"
+                      [ngClass]="{ 'is-invalid': submited && f.cashPlotAmount.errors }">
+                      
+                      <div *ngIf="submited && f.cashPlotAmount.errors" class="invalid-feedback">
+                        <div *ngIf="submited && f.cashPlotAmount.errors.required">Cash Plot Amount is required</div>
                       </div>
-                     </div>
                     </div>
-                    <div class="col-md-3">
+                </div>
+                <div class="col-md-3">
+                  <label for="exampleInputEmail1">Check Plot Amount</label>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="checkPlotAmount" name="checkPlotAmount"
+                    formControlName="checkPlotAmount"
+                    [ngClass]="{ 'is-invalid': submited && f.checkPlotAmount.errors }">
+                    
+                    <div *ngIf="submited && f.checkPlotAmount.errors" class="invalid-feedback">
+                      <div *ngIf="submited && f.checkPlotAmount.errors.required">Check Plot Amount is required</div>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                <label for="exampleInputEmail1">Total Amount Received</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="bookingAmount" name="bookingAmount"
+                    formControlName="bookingAmount"
+                  [ngClass]="{ 'is-invalid': submited && f.bookingAmount.errors }">
+                  
+                  <div *ngIf="submited && f.bookingAmount.errors " class="invalid-feedback">
+                    <div *ngIf="submited && f.bookingAmount.errors.required">Booking  Amount is required</div>
+                </div>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <label for="exampleInputEmail1">Cash Amount Received</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="cashAmountReceived" name="cashAmountReceived"
+                  formControlName="cashAmountReceived"
+                  [ngClass]="{ 'is-invalid': submited && f.cashAmountReceived.errors }">
+                  
+                  <div *ngIf="submited && f.cashAmountReceived.errors" class="invalid-feedback">
+                    <div *ngIf="submited && f.cashAmountReceived.errors.required">Cash Amount Received is required</div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+              <label for="exampleInputEmail1">Check Amount Received</label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" id="checkAmountReceived" name="checkAmountReceived"
+                formControlName="checkAmountReceived"
+                [ngClass]="{ 'is-invalid': submited && f.checkAmountReceived.errors }">
+                
+                <div *ngIf="submited && f.checkAmountReceived.errors" class="invalid-feedback">
+                  <div *ngIf="submited && f.checkAmountReceived.errors.required">Check Amount Received is required</div>
+                </div>
+              </div>
+          </div>
+
+              <div class="col-md-3">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Commission Type</label>
                     <select class="form-control" name="commission_type" style="width: 100%;"

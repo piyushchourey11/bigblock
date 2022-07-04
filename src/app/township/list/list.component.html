@@ -109,27 +109,21 @@
                         <td class="">
                             <span class="">{{township.number_of_blocks}}</span>
                         </td>
-                        <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="javascript:void(0)"
-                            routerLink="../../block/{{township.id}}"
-                             >
-                             <i class="fas fa-pencil-alt"></i>
+                        <td class="project-actions text-center">
+                          <a class="btn btn-primary btn-sm m-1" title="Add Block" href="javascript:void(0)"
+                            routerLink="../../block/{{township.id}}">
+                             <i class="fas fa-plus"></i>
 
                                 <!-- <i class="fas fa-folder">
-                                </i> -->
-                                Add Block
-                            </a>
-                            <a class="btn btn-info btn-sm"  href="javascript:void(0)" 
+                                </i> --></a>
+                            <a class="btn btn-info btn-sm m-1" title="Edit Township"  href="javascript:void(0)" 
                             (click)="editTownShip(township.id)">
                                 <i class="fas fa-pencil-alt">
-                                </i>
-                                Edit
-                            </a>
-                            <a class="btn btn-danger btn-sm" (click)="selectedTownship = township" href="javascript:void(0)" 
+                                </i></a>
+                            <a class="btn btn-danger btn-sm m-1" title="Delete Township" (click)="selectedTownship = township" href="javascript:void(0)" 
                             data-toggle="modal" data-target="#staticBackdrop">
                                 <i class="fas fa-trash">
                                 </i>
-                                Delete
                             </a>
                         </td>
                     </tr>

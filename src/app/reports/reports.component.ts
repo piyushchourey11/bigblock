@@ -153,4 +153,17 @@ export class ReportsComponent implements OnInit {
 
     },0)
   }
+
+  export(reportType:any){
+    console.log("excel export = "+reportType);
+    this.api.postData('report/export', {reportType}, "Post").subscribe((res:any) => {
+        if(res && res.status == 1) {
+            window.open(res.data , '_blank');
+        }else {
+        
+        }
+      })
+  }
+
+
 }

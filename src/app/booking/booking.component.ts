@@ -47,12 +47,16 @@ export class BookingComponent implements OnInit {
       agreementDoc:[this.bookingdetail && this.bookingdetail.agreementDoc ? this.bookingdetail.agreementDoc:"",[Validators.required]],
       agreementDocData:[this.bookingdetail && this.bookingdetail.agreementDoc ? this.bookingdetail.agreementDoc:"",[Validators.required]],
       plotAmount:[this.bookingdetail && this.bookingdetail.plotAmount ? this.bookingdetail.plotAmount:"",[Validators.required]],
+      cashPlotAmount:[this.bookingdetail && this.bookingdetail.cashPlotAmount ? this.bookingdetail.cashPlotAmount:"",[Validators.required]],
+      checkPlotAmount:[this.bookingdetail && this.bookingdetail.checkPlotAmount ? this.bookingdetail.checkPlotAmount:"",[Validators.required]],
       bookingAmount:[this.bookingdetail && this.bookingdetail.bookingAmount ? this.bookingdetail.bookingAmount:"",[Validators.required]],
+      cashAmountReceived:[this.bookingdetail && this.bookingdetail.cashAmountReceived ? this.bookingdetail.cashAmountReceived:"",[Validators.required]],
+      checkAmountReceived:[this.bookingdetail && this.bookingdetail.checkAmountReceived ? this.bookingdetail.checkAmountReceived:"",[Validators.required]],
       paymentMode:[this.bookingdetail && this.bookingdetail.paymentMode ? this.bookingdetail.paymentMode:"",[Validators.required]],
       description:[this.bookingdetail && this.bookingdetail.description ? this.bookingdetail.description:"",[Validators.required]],
       status:[this.bookingdetail && this.bookingdetail.status ? this.bookingdetail.status:""],
       commission_type:[this.bookingdetail && this.bookingdetail.commission_type ? this.bookingdetail.commission_type:""],
-      commission_type_amount:[this.bookingdetail && this.bookingdetail.commission_type_amount ? this.bookingdetail.commission_type_amount:"",],
+      commission_type_amount:[this.bookingdetail && this.bookingdetail.commission_type_amount ? this.bookingdetail.commission_type_amount:0,],
       commission_amount:[this.bookingdetail && this.bookingdetail.commission_amount ? this.bookingdetail.commission_amount:"",],
       brokerId:[this.bookingdetail && this.bookingdetail.brokerId ? this.bookingdetail.brokerId:""],
      
@@ -72,8 +76,8 @@ export class BookingComponent implements OnInit {
       this.setFroms()
     }
 
- }
-get f() { return this.registrationForm.controls}
+  }
+  get f() { return this.registrationForm.controls}
 
  register(){
   this.submited = true;
