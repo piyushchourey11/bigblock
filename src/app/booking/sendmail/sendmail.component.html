@@ -46,7 +46,7 @@
                   </div>
                   <div class="form-group">
                     <input class="form-control" placeholder="Subject:" formControlName="subject"
-                    [ngClass]="{ 'is-invalid': submited && f.subject.errors }">
+                    [ngClass]="{ 'is-invalid': submited && f.subject.errors }" [(ngModel)]="subject">
                     <div *ngIf="submited && f.subject.errors " class="invalid-feedback">
                       <div *ngIf="submited && f.subject.errors.required">Subject is required</div>
                   </div>
@@ -54,8 +54,7 @@
                   <div class="form-group">
                       <textarea id="compose-textarea" class="form-control" style="height: 300px" 
                       formControlName="content"
-                      [ngClass]="{ 'is-invalid': submited && f.content.errors }">
-                    
+                      [ngClass]="{ 'is-invalid': submited && f.content.errors }" [(ngModel)]="content">
                       
                       </textarea>
                       <div *ngIf="submited && f.content.errors " class="invalid-feedback">

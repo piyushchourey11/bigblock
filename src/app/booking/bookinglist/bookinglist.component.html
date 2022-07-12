@@ -6,7 +6,7 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-8">
+          <div class="col-sm-4">
             <h1 class="list_heading">{{ title | titlecase }}</h1>
           </div>
           <div class="col-sm-4">
@@ -27,6 +27,9 @@
             </div>
 
           </div>
+          <div class="col-sm-4">
+            <a href="javascript:void(0)" (click)="export(this.title)" class="btn btn-custom float-right">Data Export</a>
+          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -40,29 +43,14 @@
             <table #dtElement datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped projects">
                 <thead>
                     <tr>
-                        <th >
-                            #
-                        </th>
-                        <th >
-                            Name                        </th>
-                        <th >
-                            Township
-                        </th>
-                        <th>
-                            Block
-                        </th>
-                        <th>
-                            Plot
-                        </th>
-                        <th>
-                            Broker
-                        </th>
-                        <th>
-                            Size
-                        </th>
-                      
-                        <th class="text-center"> Action
-                        </th>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Township</th>
+                        <th>Block</th>
+                        <th>Plot</th>
+                        <th>Broker</th>
+                        <th>Size</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
